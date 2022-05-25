@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 
 const styles = {
   title: {
-    m: '20px 0',
+    m: '35px 0',
     fontWeight: 'bold',
   }
 };

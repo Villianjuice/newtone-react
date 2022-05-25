@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@mui/material';
 
 import SwiperX from '../Swiper/Swiper';
-import Title from '../Title';
+import Title from '../../composables/Title';
 
 const styles = {
   section: {

@@ -58,28 +58,6 @@ export default function FilterCheckMarks({ name, types }) {
           </Select>
         </FormControl>
       </ListItem>
-
-      {/* <ListItem disablePadding>
-          <FormControl sx={{ m: 1, width: 300 }}>
-            <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
-            <Select
-              labelId="demo-multiple-checkbox-label"
-              id="demo-multiple-checkbox"
-              multiple
-              value={personName}
-              onChange={handleChange}
-              input={<OutlinedInput label="Tag" />}
-              renderValue={(selected) => selected.join(', ')}
-              MenuProps={MenuProps}>
-              {names.map((name) => (
-                <MenuItem key={name} value={name}>
-                  <Checkbox checked={personName.indexOf(name) > -1} />
-                  <ListItemText primary={name} />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </ListItem> */}
     </div>
   );
 }

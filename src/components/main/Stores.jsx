@@ -37,7 +37,7 @@ const styles = {
     fontSize: '20px',
     cursor: 'pointer',
     '&:hover': {
-      color: 'primary.main',
+      color: 'warning.light',
       textDecoration: 'underline',
     },
   },
