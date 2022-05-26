@@ -3,6 +3,8 @@ import './App.css';
 import Header from './components/Header';
 import { Collection, Home, Cart, Product } from './pages';
 
+import Footer from './components/Footer'
+
 import "swiper/css/bundle";
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path='/product' element={<Product />}/>
         <Route path='/cart' element={<Cart />}/>
       </Routes>
+      <Footer />
     </div>
   );
 }

@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Box, Button, Drawer, List, Typography } from '@mui/material';
+import { Box, Drawer, List, Typography } from '@mui/material';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import FilterCheckMarks from '../FilterCheckMarks';
+import FilterCheckMarks from './FilterCheckMarks';
+
+import Button from '../../composables/Button'
 
 const styles = {
   buttonFilter: {
@@ -58,10 +60,10 @@ export default function SideBar() {
       onKeyDown={toggleDrawer(anchor, false)}>
       <List>
         {filterTypes.map((type) => (
-          <FilterCheckMarks key={type.name} {...type} />
+          <FilterCheckMarks key={type.name}  {...type} />
         ))}
       </List>
-      <Button size="small" variant="contained" sx={{ color: 'primary.light' }}>
+      <Button>
         Применить
       </Button>
     </Box>

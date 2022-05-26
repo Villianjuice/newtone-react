@@ -13,7 +13,7 @@ const Product = () => {
       <Container maxWidth="lg">
         <Grid container spacing={10}>
           <Grid item md={6} xs={12}>
-            <SwiperGallery />
+            <SwiperGallery swiperTopWidth="80%" />
           </Grid>
           <Grid item md={6} xs={12}>
             <Review />

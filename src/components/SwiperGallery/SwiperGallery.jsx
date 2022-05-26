@@ -18,7 +18,7 @@ import './SwiperGallery.css';
 // import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper';
 
-export default function SwiperGallery() {
+export default function SwiperGallery({ swiperTopWidth }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -27,23 +27,23 @@ export default function SwiperGallery() {
         style={{
           '--swiper-navigation-color': '#fff',
           '--swiper-pagination-color': '#fff',
-          width: '80%'
+          width: swiperTopWidth,
         }}
         spaceBetween={10}
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2">
-        <SwiperSlide>
+        <SwiperSlide >
           <img src={woman1} alt="woman" />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide >
           <img src={woman2} alt="woman" />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide >
           <img src={woman3} alt="woman" />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide >
           <img src={woman4} alt="woman" />
         </SwiperSlide>
       </Swiper>
@@ -55,16 +55,16 @@ export default function SwiperGallery() {
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper">
-        <SwiperSlide>
+        <SwiperSlide >
           <img src={woman1} alt="woman" />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide >
           <img src={woman2} alt="woman" />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide >
           <img src={woman3} alt="woman" />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide >
           <img src={woman4} alt="woman" />
         </SwiperSlide>
       </Swiper>

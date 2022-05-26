@@ -37,8 +37,8 @@ export default function FilterCheckMarks({ name, types }) {
 
   return (
     <div>
-      <ListItem  disablePadding>
-        <FormControl sx={{ m: '10px 0', width: 300 }}>
+      <ListItem disablePadding>
+        <FormControl sx={{ m: '10px 0', width: '100%' }}>
           <InputLabel id="demo-multiple-checkbox-label">{name}</InputLabel>
           <Select
             labelId="demo-multiple-checkbox-label"

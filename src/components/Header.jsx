@@ -5,7 +5,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 
-import logoHeader from '../assets/img/logo-header.svg';
+import logo from '../assets/img/logo-header.svg';
 import Search from './Search';
 import IconButtonHead from './IconButtonHead';
 import { Link } from 'react-router-dom';
@@ -25,7 +25,7 @@ const Header = () => {
         <Container maxWidth="xl">
           <Box sx={styles.Toolbar}>
             <Box sx={{ mr: 2 }}>
-              <img src={logoHeader} alt="logo-header" />
+              <img src={logo} alt="logo-header" />
             </Box>
             <Search />
             <Box sx={styles.BoxIcons}>

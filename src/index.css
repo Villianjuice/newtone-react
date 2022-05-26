@@ -57,6 +57,7 @@ a:not([class]) {
 a{
   text-decoration: none;
   cursor: pointer;
+  
 }
 
 /* Упрощаем работу с изображениями */

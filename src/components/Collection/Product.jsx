@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import woman2 from '../../assets/img/woman2.jpg';
+import ImgDialog from '../Dialog/ImgDialog';
 
 const styles = {
   box: {display: 'flex', flexDirection: 'column', alignItems: 'center'},
@@ -13,7 +14,7 @@ const styles = {
 const Product = () => {
   return (
     <Box sx={styles.box}>
-      <img src={woman2} alt="woman" style={styles.img}/>
+      <ImgDialog src={woman2}/>
       <Link to="/">
         <Typography sx={styles.desc} color="primary.main">Повседневная хлопковая футболка</Typography>
       </Link>

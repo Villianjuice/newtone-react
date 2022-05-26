@@ -1,20 +1,19 @@
 import { Box } from '@mui/material';
 
-const styles = {
-  button: {
-    fontSize: '18px',
-    height: '50px',
-    width: '100%',
-    cursor: 'pointer',
-    backgroundColor: 'success.light',
-    color: 'primary.light',
-    border: 'none'
-    // '&:hover': {backgroundColor: 'primary.light'},
-  },
-  
-}
-
-const ButtonX = ({children}) => {
+const ButtonX = ({children, fs, height}) => {
+  const styles = {
+    button: {
+      fontSize: fs,
+      height: height,
+      width: '100%',
+      cursor: 'pointer',
+      backgroundColor: 'success.light',
+      color: 'primary.light',
+      border: 'none'
+      // '&:hover': {backgroundColor: 'primary.light'},
+    },
+    
+  }
   return (
     <Box
       component="button"
