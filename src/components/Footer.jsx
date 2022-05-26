@@ -1,11 +1,10 @@
 import { AppBar, Grid, Container, List, ListItem, Link, Divider } from '@mui/material';
 
-import logo from '../assets/img/logo-header.svg';
-
 import { BsTelegram, BsYoutube, BsInstagram } from 'react-icons/bs';
 import Group from '../assets/img/Group.svg';
 import Visa from '../assets/img/Visa.svg';
 import Mir from '../assets/img/mir-logo_1.svg';
+import Logo from '../composables/Logo';
 
 const styles = {
   AppBar: { padding: '40px 5px' },
@@ -42,7 +41,7 @@ const Footer = () => {
             md={4}
             xs={12}
             sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
-            <img src={logo} alt="logo-header" />
+            <Logo />
           </Grid>
           <Grid item md={4} xs={12} sx={{display: 'flex', justifyContent: 'end'}}>
             <List > 
