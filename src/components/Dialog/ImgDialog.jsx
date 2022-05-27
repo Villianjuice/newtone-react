@@ -15,7 +15,7 @@ import {
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import woman2 from '../../assets/img/woman2.jpg';
+// import woman2 from '../../assets/img/woman2.jpg';
 
 import SwiperGallery from '../SwiperGallery/SwiperGallery';
 import ButtonX from '../../composables/Button';
@@ -24,7 +24,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function ImgDialog({src}) {
+export default function ImgDialog({ src }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -56,7 +56,12 @@ export default function ImgDialog({src}) {
 
   return (
     <div>
-      <img src={woman2} alt="woman" style={styles.img} onClick={handleClickOpen} />
+      <img
+        src="https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27094020_01_D5.jpg?ts=1644587551286&imwidth=751&imdensity=2"
+        alt="woman"
+        style={styles.img}
+        onClick={handleClickOpen}
+      />
       <Dialog
         open={open}
         TransitionComponent={Transition}
