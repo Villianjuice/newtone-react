@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { BrowserRouter } from 'react-router-dom';
 
-import PTRootUI from './assets/fonts/PTRootUI_Regular.otf'
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux'
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import PTRootUI from './assets/fonts/PTRootUI_Regular.otf';
+
 
 import './index.css';
 import App from './App';
+import { store } from './redux';
 
 const theme = createTheme({
   palette: {
@@ -31,34 +35,15 @@ const theme = createTheme({
       light: '#2D2D2D',
     },
   },
-  // typography: {
-  //   fontFamily: 'PTRootUI',
-  // },
-  // components: {
-  //   MuiCssBaseline: {
-  //     styleOverrides: `
-  //     @font-face {
-  //       font-family: 'PTRootUI';
-  //       font-style: normal;
-  //       font-display: swap;
-  //       font-weight: 400;
-  //       src: local('PTRootUI'), url(${PTRootUI}) format('opentype');
-  //     }
-  //   `,
-  //   },
-  // },
-  // breakpoints: {
-  //   values: {
-  //     xl: 1300,
-  //   },
-  // },
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
+  </Provider>,
 );

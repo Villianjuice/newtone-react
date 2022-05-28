@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppBar, Box, Container, IconButton, Typography, Badge } from '@mui/material';
 
@@ -19,8 +20,11 @@ const styles = {
 const Header = () => {
   const navigate = useNavigate();
 
+  const totalPrice = useSelector(({ cart }) => cart.totalPrice);
+  const totalCount = useSelector(({ cart }) => cart.totalCount);
+  
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    // <Box sx={{ flexGrow: 1 }} component='header'>
       <AppBar position="static" sx={styles.AppBar}>
         <Container maxWidth="xl">
           <Box sx={styles.Toolbar}>
@@ -45,11 +49,11 @@ const Header = () => {
                 color="inherit"
                 aria-label="open drawer"
                 sx={{ ml: 5 }}>
-                <Badge color="secondary" variant="dot">
+                <Badge badgeContent={totalCount}  color="secondary" >
                   <LocalGroceryStoreOutlinedIcon fontSize="28px" />
                 </Badge>
               </IconButton>
-              <Typography> 0.00 ₽</Typography>
+              <Typography> {totalPrice} ₽</Typography>
             </Box>
           </Box>
           <Box sx={styles.gender}>
@@ -62,7 +66,7 @@ const Header = () => {
           </Box>
         </Container>
       </AppBar>
-    </Box>
+    // </Box>
   );
 };
 

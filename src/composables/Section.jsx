@@ -7,7 +7,7 @@ const styles = {
 
 const Section = ({ children }) => {
   return (
-    <Box component="section" sx={styles.section}>
+    <Box component="main" sx={styles.section}>
       <Container maxWidth="xl">{children}</Container>
     </Box>
   );

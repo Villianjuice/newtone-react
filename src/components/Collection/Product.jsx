@@ -2,7 +2,6 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 import ImgDialog from '../Dialog/ImgDialog';
 
 const styles = {
@@ -11,16 +10,16 @@ const styles = {
   desc: { m: '20px 6px 10px', textAlign: 'center', display: 'block' },
 };
 
-const Product = () => {
+const Product = ({ item }) => {
   return (
     <Box sx={styles.box}>
-      <ImgDialog  />
+      <ImgDialog item={item}/>
       <Link to="/">
         <Typography sx={styles.desc} color="primary.main">
-          Повседневная хлопковая футболка
+          {item.title}
         </Typography>
       </Link>
-      <Typography sx={{ fontWeight: 'bold' }}>990 ₽</Typography>
+      <Typography sx={{ fontWeight: 'bold' }}>{item.price} ₽</Typography>
     </Box>
   );
 };

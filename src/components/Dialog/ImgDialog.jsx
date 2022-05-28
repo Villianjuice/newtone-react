@@ -1,11 +1,10 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  Button,
   Slide,
   Dialog,
   Grid,
-  Box,
   List,
   ListItem,
   Divider,
@@ -15,16 +14,47 @@ import {
 
 import CloseIcon from '@mui/icons-material/Close';
 
-// import woman2 from '../../assets/img/woman2.jpg';
-
 import SwiperGallery from '../SwiperGallery/SwiperGallery';
 import ButtonX from '../../composables/Button';
+import { deleteItemFromCart, setItemInCart } from '../../redux/cart/cartSlice';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function ImgDialog({ src }) {
+const styles = {
+  title: { color: 'primary.dark', fontSize: 15, fontWeight: 'bold' },
+  price: { color: 'primary.dark', fontSize: 16 },
+  size: { color: 'primary.dark', fontSize: 16, fontWeight: 'bold' },
+  compound: { color: 'secondary.main', fontSize: 12 },
+  compoundDesc: { fontSize: 12 },
+  marginItem: { m: '10px 0' },
+  marginSpan: { m: '5px 0' },
+  linkButton: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'start',
+    height: '100%',
+    mt: 1,
+  },
+  img: { cursor: 'pointer', width: '100%' },
+};
+
+export default function ImgDialog({ item }) {
+  const itemsInCart = useSelector(({ cart }) => cart.itemsInCart);
+  const dispatch = useDispatch();
+
+  const isItemInCart = itemsInCart.some((itemInCart) => itemInCart.id === item.id);
+
+  const handleClick = () => {
+    if (isItemInCart) {
+      dispatch(deleteItemFromCart(item.id));
+    } else {
+      dispatch(setItemInCart(item));
+    }
+  };
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -35,43 +65,19 @@ export default function ImgDialog({ src }) {
     setOpen(false);
   };
 
-  const styles = {
-    title: { color: 'primary.dark', fontSize: 15, fontWeight: 'bold' },
-    price: { color: 'primary.dark', fontSize: 16 },
-    size: { color: 'primary.dark', fontSize: 16, fontWeight: 'bold' },
-    compound: { color: 'secondary.main', fontSize: 12 },
-    compoundDesc: { fontSize: 12 },
-    marginItem: { m: '10px 0' },
-    marginSpan: { m: '5px 0' },
-    linkButton: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      alignItems: 'start',
-      height: '100%',
-      mt: 1,
-    },
-    img: { cursor: 'pointer', width: '100%' },
-  };
-
   return (
     <div>
-      <img
-        src="https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27094020_01_D5.jpg?ts=1644587551286&imwidth=751&imdensity=2"
-        alt="woman"
-        style={styles.img}
-        onClick={handleClickOpen}
-      />
+      <img src={item.firstImage} alt="woman" style={styles.img} onClick={handleClickOpen} />
       <Dialog
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        maxWidth="sm"
+        // maxWidth="600px"
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description">
         <Grid container spacing={3} sx={{ p: '23px' }}>
           <Grid item sm={12} md={6}>
-            <SwiperGallery swiperTopWidth="100%" />
+            <SwiperGallery swiperTopWidth="100%" images={item.images} />
           </Grid>
           <Grid item sm={12} md={6}>
             <List disablePadding sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -82,58 +88,29 @@ export default function ImgDialog({ src }) {
                 </IconButton>
               </ListItem>
               <ListItem disablePadding sx={styles.marginItem}>
-                <Typography sx={styles.price}>990.00 ₽</Typography>
-              </ListItem>
-              <ListItem disablePadding sx={styles.marginItem}>
-                <Box>
-                  <Button
-                    sx={{ minWidth: '14px', mr: 1 }}
-                    size="small"
-                    variant="outlined"
-                    color="primary">
-                    X
-                  </Button>
-                  <Button
-                    sx={{ minWidth: '14px', mr: 1 }}
-                    size="small"
-                    variant="outlined"
-                    color="primary">
-                    X
-                  </Button>
-                  <Button
-                    sx={{ minWidth: '14px', mr: 1 }}
-                    size="small"
-                    variant="outlined"
-                    color="primary">
-                    X
-                  </Button>
-                  <Button
-                    sx={{ minWidth: '14px', mr: 1 }}
-                    size="small"
-                    variant="outlined"
-                    color="primary">
-                    X
-                  </Button>
-                </Box>
+                <Typography sx={styles.price}>{item.price} ₽</Typography>
               </ListItem>
               <Divider />
               <ListItem disablePadding sx={styles.marginSpan}>
                 <Typography sx={styles.compound}>Состав</Typography>
               </ListItem>
               <ListItem disablePadding sx={styles.marginSpan}>
-                <Typography sx={styles.compoundDesc}>Хлопок</Typography>
+                <Typography sx={styles.compoundDesc}>{item.compound}</Typography>
               </ListItem>
               <ListItem disablePadding sx={styles.marginSpan}>
                 <Typography sx={styles.compound}>Страна</Typography>
               </ListItem>
               <ListItem disablePadding sx={styles.marginSpan}>
-                <Typography sx={styles.compoundDesc}>Италия</Typography>
+                <Typography sx={styles.compoundDesc}>{item.country}</Typography>
               </ListItem>
               <Divider />
 
               <ListItem disablePadding sx={styles.linkButton}>
-                <ButtonX height="25px" fs="15px" sx={styles.marginItem}>
-                  В корзину
+                <ButtonX
+                  onClick={handleClick}
+                  secondary={isItemInCart ? true : false}
+                  sx={styles.marginItem}>
+                  {isItemInCart ? 'Убрать из корзины' : 'В корзину'}
                 </ButtonX>
                 <Link to="/product" style={{ fontSize: '14px', color: 'black' }}>
                   Перейти в карточку товара →

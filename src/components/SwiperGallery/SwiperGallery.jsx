@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import woman1 from '../../assets/img/woman1.jpg';
-import woman2 from '../../assets/img/woman1-2.jpg';
-import woman3 from '../../assets/img/woman1-3.jpg';
-import woman4 from '../../assets/img/woman1-4.jpg';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -18,7 +13,7 @@ import './SwiperGallery.css';
 // import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper';
 
-export default function SwiperGallery({ swiperTopWidth }) {
+export default function SwiperGallery({ swiperTopWidth, images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -34,18 +29,12 @@ export default function SwiperGallery({ swiperTopWidth }) {
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2">
-        <SwiperSlide >
-          <img src={woman1} alt="woman" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={woman2} alt="woman" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={woman3} alt="woman" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={woman4} alt="woman" />
-        </SwiperSlide>
+        {images &&
+          images.map((image) => (
+            <SwiperSlide key={Math.random() * 0.5}>
+              <img src={image.imageUrl} alt={image.imageUrl} />
+            </SwiperSlide>
+          ))}
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -55,18 +44,12 @@ export default function SwiperGallery({ swiperTopWidth }) {
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper">
-        <SwiperSlide >
-          <img src={woman1} alt="woman" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={woman2} alt="woman" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={woman3} alt="woman" />
-        </SwiperSlide>
-        <SwiperSlide >
-          <img src={woman4} alt="woman" />
-        </SwiperSlide>
+        {images &&
+          images.map((image) => (
+            <SwiperSlide key={Math.random() * 0.5}>
+              <img src={image.imageUrl} alt={image.imageUrl} />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );
