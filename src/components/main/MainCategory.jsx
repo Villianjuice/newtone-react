@@ -6,6 +6,8 @@ import mainCat1 from '../../assets/img/main-cat1.jpg';
 import mainCat2 from '../../assets/img/main-cat2.jpg';
 import mainCat3 from '../../assets/img/main-cat3.jpg';
 import mainCat4 from '../../assets/img/main-cat4.jpg';
+import { useDispatch } from 'react-redux';
+import { setGender } from '../../redux/filter/filterSlice';
 
 const categories = [
   { img: mainCat1, name: 'Вышевка' },
@@ -26,11 +28,16 @@ const styles = {
 };
 
 const MainCategory = () => {
+  const dispatch = useDispatch();
+
+  const changeGenderFemale = React.useCallback(() => {
+    dispatch(setGender(0));
+  }, [dispatch]);
   return (
     <Grid container spacing={2}>
       {categories.map((category) => (
         <Grid item xs={6} md={3} key={category.name}>
-          <Link to="/category" style={styles.link}>
+          <Link to="/collection" onClick={changeGenderFemale} style={styles.link}>
             <img src={category.img} alt={category.name} style={styles.img} />
             <Typography color="secondary">{category.name}</Typography>
             <Typography>→</Typography>

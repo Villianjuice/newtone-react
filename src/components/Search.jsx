@@ -1,27 +1,26 @@
 import { Autocomplete, Stack, TextField } from '@mui/material'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const styles = {
-  Stack: { width: 550, background: '#434343' }
+  Stack: { width: 550, background: '#434343', display: {xs: 'none', sm: 'block'} }
+
 }
 
 const Search = () => {
-  const top100Films = [
-    { title: 'The Shawshank Redemption', year: 1994 },
-    { title: 'The Godfather', year: 1972 },
-    { title: 'The Godfather: Part II', year: 1974 },
-    { title: 'The Dark Knight', year: 2008 },
-    { title: '12 Angry Men', year: 1957 },
-    { title: "Schindler's List", year: 1993 },
-    { title: 'Pulp Fiction', year: 1994 }
-  ]
+  const items = useSelector(({items}) => items.items)
+  const [searchValue, setSearchValue] = React.useState([])
+  React.useEffect(() => {
+    setSearchValue(items)
+  }, [items])
   return (
     <Stack spacing={2} sx={styles.Stack} >
     <Autocomplete
       id="free-solo-demo"
       freeSolo
-      options={top100Films.map((option) => option.title)}
-      renderInput={(params) => <TextField {...params} label="freeSolo" />}
+      options={searchValue && searchValue.map((option) => option.title)}
+      renderInput={(params) => <TextField {...params} label="Поиск" />}
+      
     />
   </Stack>
   )

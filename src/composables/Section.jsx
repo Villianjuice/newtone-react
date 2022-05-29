@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Container } from '@mui/material';
 
 const styles = {
-  section: { m: '50px 0' },
+  section: { m: '35px 0' },
 };
 
 const Section = ({ children }) => {

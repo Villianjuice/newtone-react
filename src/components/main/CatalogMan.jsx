@@ -18,7 +18,7 @@ const styles = {
   },
 };
 
-const CatalogMan = ({ gender }) => {
+const CatalogMan = ({ gender, newItems }) => {
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
@@ -37,7 +37,7 @@ const CatalogMan = ({ gender }) => {
   return (
     <section style={styles.section}>
       <Title title={gender} />
-      <Typography variant="span">Новинки</Typography>
+      {newItems && <Typography variant="span">Новинки</Typography>}
       {items && <SwiperX items={items} />}
     </section>
   );

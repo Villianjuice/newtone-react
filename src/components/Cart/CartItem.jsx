@@ -1,6 +1,9 @@
 import { Box, Grid, Typography, IconButton } from '@mui/material';
 
 import CloseIcon from '@mui/icons-material/Close';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteItemFromCart } from '../../redux/cart/cartSlice';
+import React from 'react';
 
 const styles = {
   items: { mb: '50px' },
@@ -25,6 +28,16 @@ const styles = {
 };
 
 const CartItem = ({ item }) => {
+  const itemsInCart = useSelector(({ cart }) => cart.itemsInCart);
+  const dispatch = useDispatch();
+
+  const isItemInCart = itemsInCart.some((itemInCart) => itemInCart.id === item.id);
+
+  const handleClick = React.useCallback(() => {
+    if (isItemInCart) {
+      dispatch(deleteItemFromCart(item.id));
+    } 
+  }, [dispatch, isItemInCart, item]);
   return (
     <Grid container spacing={1} sx={styles.items}>
       <Grid item xs={2}>
@@ -39,7 +52,7 @@ const CartItem = ({ item }) => {
       </Grid>
       <Grid item xs={0.8}>
         <Box sx={styles.close}>
-          <IconButton>
+          <IconButton onClick={handleClick}>
             <CloseIcon sx={styles.btnClose} />
           </IconButton>
         </Box>

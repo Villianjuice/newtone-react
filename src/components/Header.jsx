@@ -43,7 +43,7 @@ const Header = React.memo(function Header() {
           <Search />
           <Box sx={styles.BoxIcons}>
             <IconButton
-              onClick={() => navigate('/')}
+              onClick={() => navigate('/auth')}
               size="large"
               edge="start"
               color="inherit"
@@ -62,7 +62,7 @@ const Header = React.memo(function Header() {
                 <LocalGroceryStoreOutlinedIcon fontSize="28px" />
               </Badge>
             </IconButton>
-            <Typography sx={{width: '90px'}}> {totalPrice} ₽</Typography>
+            <Typography > {totalPrice} ₽</Typography>
           </Box>
         </Box>
         <Box sx={styles.gender}>

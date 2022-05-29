@@ -13,8 +13,6 @@ const itemsSlice = createSlice({
   name: 'items',
   initialState: {
     items: [],
-    itemsMan: [],
-    itemsWoman: [],
     isLoad: false,
     error: null,
   },

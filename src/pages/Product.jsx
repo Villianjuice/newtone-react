@@ -9,6 +9,7 @@ import Section from '../composables/Section';
 import Title from '../composables/Title';
 import Swiper from '../components/Swiper/Swiper';
 import Description from '../components/Product/Description';
+import CatalogMan from '../components/main/CatalogMan';
 
 const Product = () => {
   const [item, setItem] = React.useState([]);
@@ -40,9 +41,8 @@ const Product = () => {
           </Grid>
         </Grid>
       </Container>
-      <Description {...item}/>
-      <Title title="Сопутствующие товары" />
-      <Swiper />
+      <Description {...item} />
+      <CatalogMan  gender="Сопутствующие товары" />
     </Section>
   );
 };

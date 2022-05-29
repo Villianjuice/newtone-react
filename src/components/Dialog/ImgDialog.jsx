@@ -47,13 +47,13 @@ export default function ImgDialog({ item }) {
 
   const isItemInCart = itemsInCart.some((itemInCart) => itemInCart.id === item.id);
 
-  const handleClick = () => {
+  const handleClick = React.useCallback(() => {
     if (isItemInCart) {
       dispatch(deleteItemFromCart(item.id));
     } else {
       dispatch(setItemInCart(item));
     }
-  };
+  }, [dispatch, isItemInCart, item]);
 
   const [open, setOpen] = React.useState(false);
 
