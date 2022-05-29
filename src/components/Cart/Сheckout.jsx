@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 import ButtonX from '../../composables/Button';
 
@@ -17,13 +18,14 @@ const styles = {
 };
 
 const Сheckout = () => {
+  const totalPrice = useSelector(({ cart }) => cart.totalPrice);
   return (
     <Box sx={styles.box}>
       <Box sx={styles.boxDesc}>
         <Typography sx={styles.bold}>Итого:</Typography>
-        <Typography sx={styles.bold}>17 630.00 ₽</Typography>
+        <Typography sx={styles.bold}>{totalPrice} ₽</Typography>
       </Box>
-      <ButtonX >Оформить заказ</ButtonX>
+      <ButtonX>Оформить заказ</ButtonX>
     </Box>
   );
 };

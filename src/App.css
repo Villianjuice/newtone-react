@@ -1,7 +1,9 @@
 main {
   margin: 20px 0;
 }
-
+#root,html,body{
+  height: 100%;
+}
 .App {
   min-height: 100%;
   display: flex;

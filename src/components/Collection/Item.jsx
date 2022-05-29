@@ -10,11 +10,11 @@ const styles = {
   desc: { m: '20px 6px 10px', textAlign: 'center', display: 'block' },
 };
 
-const Product = ({ item }) => {
+const Item = ({ item }) => {
   return (
     <Box sx={styles.box}>
       <ImgDialog item={item}/>
-      <Link to="/">
+      <Link to={`/product/${item.id}`}>
         <Typography sx={styles.desc} color="primary.main">
           {item.title}
         </Typography>
@@ -24,4 +24,4 @@ const Product = ({ item }) => {
   );
 };
 
-export default Product;
+export default Item;

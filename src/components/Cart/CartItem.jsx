@@ -1,10 +1,6 @@
 import { Box, Grid, Typography, IconButton } from '@mui/material';
 
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
-
-import woman2 from '../../assets/img/woman2.jpg';
 
 const styles = {
   items: { mb: '50px' },
@@ -12,7 +8,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     flexDirection: 'column',
-    // height: '158px',
+    maxHeight: '140px',
   },
   button: {
     backgroundColor: 'success.light',
@@ -28,33 +24,25 @@ const styles = {
   priceItem: { color: 'warning.light' },
 };
 
-const CartItem = () => {
+const CartItem = ({ item }) => {
   return (
-    <Grid container spacing={1.5} sx={styles.items}>
-      <Grid item md={2}>
-        <img style={{ maxWidth: '100px' }} src={woman2} alt="woman2" />
+    <Grid container spacing={1} sx={styles.items}>
+      <Grid item xs={2}>
+        <img src={item.firstImage} style={{ maxHeight: '150px' }} alt="woman2" />
       </Grid>
-      <Grid item md={8} sx={styles.info}>
-        <Typography sx={styles.bold}>Повседневная хлопковая футболка</Typography>
-        <Typography sx={styles.bold}>(M)</Typography>
-        <Typography sx={styles.priceItem}>3 590.00 ₽</Typography>
-        <Box sx={styles.button}>
-          <IconButton>
-            <RemoveIcon fontSize="small" sx={styles.btnCount} />
-          </IconButton>
-          <Typography sx={styles.btnCount}>2</Typography>
-          <IconButton>
-            <AddIcon fontSize="small" sx={styles.btnCount} />
-          </IconButton>
-        </Box>
+      <Grid item xs={9.2} sx={styles.info}>
+        <Typography sx={styles.bold}>{item.title}</Typography>
+        <Typography>
+          ({item.compound}, {item.country})
+        </Typography>
+        <Typography sx={styles.priceItem}>{item.price} ₽</Typography>
       </Grid>
-      <Grid item md={2} sx={styles.info}>
+      <Grid item xs={0.8}>
         <Box sx={styles.close}>
           <IconButton>
             <CloseIcon sx={styles.btnClose} />
           </IconButton>
         </Box>
-        <Typography>7 180.00 ₽</Typography>
       </Grid>
     </Grid>
   );

@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Box, Drawer, List, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import FilterCheckMarks from './FilterCheckMarks';
 
-import Button from '../../composables/Button'
+import Button from '../../composables/Button';
+import { setCompound, setCountry, setSize } from '../../redux/filter/filterSlice';
 
 const styles = {
   buttonFilter: {
@@ -24,7 +26,7 @@ const styles = {
   },
 };
 
-const filterTypes = [
+const [size, compound, country] = [
   {
     name: 'Размер',
     types: ['S', 'M', 'L', 'XL'],
@@ -40,6 +42,8 @@ const filterTypes = [
 ];
 
 export default function SideBar() {
+  const dispatch = useDispatch();
+
   const [state, setState] = React.useState({
     left: false,
   });
@@ -52,20 +56,36 @@ export default function SideBar() {
     setState({ ...state, [anchor]: open });
   };
 
+  const onSetSize = React.useCallback(
+    (compounds) => {
+      dispatch(setSize(compounds));
+    },
+    [dispatch],
+  );
+  const onSetCompound = React.useCallback(
+    (compounds) => {
+      dispatch(setCompound(compounds));
+    },
+    [dispatch],
+  );
+  const onSetCountry = React.useCallback(
+    (compounds) => {
+      dispatch(setCountry(compounds));
+    },
+    [dispatch],
+  );
+
   const list = (anchor) => (
     <Box
       sx={styles.drawer}
       role="presentation"
-      // onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}>
       <List>
-        {filterTypes.map((type) => (
-          <FilterCheckMarks key={type.name}  {...type} />
-        ))}
+        <FilterCheckMarks onFilter={onSetSize} {...size} />
+        <FilterCheckMarks onFilter={onSetCompound} {...compound} />
+        <FilterCheckMarks onFilter={onSetCountry} {...country} />
       </List>
-      <Button>
-        Применить
-      </Button>
+      <Button onClick={toggleDrawer('left', false)}>Применить</Button>
     </Box>
   );
 

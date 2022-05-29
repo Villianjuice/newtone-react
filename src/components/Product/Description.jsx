@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  List,
-  Typography,
-  Grid,
-} from '@mui/material';
+import { Box, List, Typography, Grid } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import TuneIcon from '@mui/icons-material/Tune';
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
@@ -12,20 +7,14 @@ import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
 import Button from '../../composables/Button';
 import Select from './Select';
 
-const Description = () => {
-
+const Description = ({ desc, compound, country }) => {
   return (
     <Box sx={{ margin: '40px 0' }}>
       <List disablePadding>
-        <Select name='Описание' icon={<InfoOutlinedIcon />}>
-          <Typography sx={{ textAlign: 'justify', p: '15px 18px' }}>
-            Тут описание вашего товара, начните с самого интересного о вашем товаре, зацепите вашего
-            покупателя. Пишите так, чтобы было полезно вашему будущему покупателю. Можно добавить
-            материал который используется в вашем товаре (или состав вашего продукта). Добавьте
-            инструкцию по использованию.
-          </Typography>
+        <Select name="Описание" icon={<InfoOutlinedIcon />}>
+          <Typography sx={{ textAlign: 'justify', p: '15px 18px' }}>{desc}</Typography>
         </Select>
-        <Select name='Характеристики' icon={<TuneIcon />}>
+        <Select name="Характеристики" icon={<TuneIcon />}>
           <Grid container sx={{ p: '15px 18px' }} spacing={3}>
             <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography>Состав</Typography>
@@ -36,10 +25,10 @@ const Description = () => {
                   height: '1em',
                   margin: ' 0 .4em',
                 }}></Box>
-              <Typography>Хлопок</Typography>
+              <Typography>{compound}</Typography>
             </Grid>
             <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography>Состав</Typography>
+              <Typography>Страна</Typography>
               <Box
                 sx={{
                   flex: '1 0',
@@ -47,11 +36,11 @@ const Description = () => {
                   height: '1em',
                   margin: ' 0 .4em',
                 }}></Box>
-              <Typography>Хлопок</Typography>
+              <Typography>{country}</Typography>
             </Grid>
           </Grid>
         </Select>
-        <Select name='Отзывы' icon={<ForumOutlinedIcon />}>
+        <Select name="Отзывы" icon={<ForumOutlinedIcon />}>
           <Box sx={{ p: '15px 18px' }}>
             <Typography>Отзывов еще никто не оставлял</Typography>
             <Box sx={{ width: 250, m: '15px 0' }}>

@@ -10,6 +10,8 @@ import './swiper.css';
 
 import woman1 from '../../assets/img/woman1.jpg';
 import { Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import ImgDialog from '../Dialog/ImgDialog'
 
 const styles = {
   slide: {
@@ -19,17 +21,26 @@ const styles = {
   },
   title: {
     m: '10px 0',
+    height: 55,
+    display: 'flex',
+    alignItems: 'center',
   },
   price: {
     fontWeight: 'bold',
   },
   swiper: {
-    margin: '20px 0'
-  }
+    margin: '20px 0',
+  },
 };
-const breakpoints = {0: { slidesPerView: 2 }, 992: { slidesPerView: 3 }, 1200: { slidesPerView: 5 }}
+const breakpoints = {
+  0: { slidesPerView: 2 },
+  992: { slidesPerView: 3 },
+  1200: { slidesPerView: 5 },
+};
 
-const SwiperX = () => {
+const SwiperX = ({ items }) => {
+  const nav = useNavigate();
+
   return (
     <Swiper
       style={styles.swiper}
@@ -37,69 +48,18 @@ const SwiperX = () => {
       navigation
       spaceBetween={15}
       breakpoints={breakpoints}>
-      <SwiperSlide style={styles.slide}>
-        <img src={woman1} alt="" />
-        <Typography variant="span" sx={styles.title}>
-          Хлопковая рубашка в полоску
-        </Typography>
-        <Typography variant="span" sx={styles.price}>
-          3 590 ₽
-        </Typography>
-      </SwiperSlide>
-      <SwiperSlide style={styles.slide}>
-        <img src={woman1} alt="" />
-        <Typography variant="span" sx={styles.title}>
-          Хлопковая рубашка в полоску
-        </Typography>
-        <Typography variant="span" sx={styles.price}>
-          3 590 ₽
-        </Typography>
-      </SwiperSlide>
-      <SwiperSlide style={styles.slide}>
-        <img src={woman1} alt="" />
-        <Typography variant="span" sx={styles.title}>
-          Хлопковая рубашка в полоску
-        </Typography>
-        <Typography variant="span" sx={styles.price}>
-          3 590 ₽
-        </Typography>
-      </SwiperSlide>
-      <SwiperSlide style={styles.slide}>
-        <img src={woman1} alt="" />
-        <Typography variant="span" sx={styles.title}>
-          Хлопковая рубашка в полоску
-        </Typography>
-        <Typography variant="span" sx={styles.price}>
-          3 590 ₽
-        </Typography>
-      </SwiperSlide>
-      <SwiperSlide style={styles.slide}>
-        <img src={woman1} alt="" />
-        <Typography variant="span" sx={styles.title}>
-          Хлопковая рубашка в полоску
-        </Typography>
-        <Typography variant="span" sx={styles.price}>
-          3 590 ₽
-        </Typography>
-      </SwiperSlide>
-      <SwiperSlide style={styles.slide}>
-        <img src={woman1} alt="" />
-        <Typography variant="span" sx={styles.title}>
-          Хлопковая рубашка в полоску
-        </Typography>
-        <Typography variant="span" sx={styles.price}>
-          3 590 ₽
-        </Typography>
-      </SwiperSlide>
-      <SwiperSlide style={styles.slide}>
-        <img src={woman1} alt="" />
-        <Typography variant="span" sx={styles.title}>
-          Хлопковая рубашка в полоску
-        </Typography>
-        <Typography variant="span" sx={styles.price}>
-          3 590 ₽
-        </Typography>
-      </SwiperSlide>
+      {items &&
+        items.map((item) => (
+          <SwiperSlide key={item.id} style={styles.slide}>
+            <ImgDialog item={item} />
+            <Typography onClick={() => nav(`/product/${item.id}`)} variant="span" sx={styles.title}>
+              {item.title}
+            </Typography>
+            <Typography variant="span" sx={styles.price}>
+              {item.price} ₽
+            </Typography>
+          </SwiperSlide>
+        ))}
     </Swiper>
   );
 };

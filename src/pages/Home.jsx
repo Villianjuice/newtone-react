@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CatalogMan from '../components/main/CatalogMan';
+import CatalogWoman from '../components/main/CatalogWoman';
 
 import MainCategory from '../components/main/MainCategory';
 import MainGender from '../components/main/MainGender';
-import Catalog from '../components/main/Catalog';
 import Stores from '../components/main/Stores';
 import Section from '../composables/Section';
 
@@ -14,8 +15,8 @@ const Home = () => {
     <Section>
         <MainGender />
         <MainCategory />
-        <Catalog gender="Женщины" />
-        <Catalog gender="Мужчины" />
+        <CatalogWoman gender="Женщины" />
+        <CatalogMan gender="Мужчины" />
         <Stores />
     </Section>
   );

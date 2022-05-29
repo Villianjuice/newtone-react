@@ -21,19 +21,21 @@ const MenuProps = {
   },
 };
 
-export default function FilterCheckMarks({ name, types }) {
-  console.log(name, types);
-  const [personName, setPersonName] = React.useState([]);
+export default function FilterCheckMarks({ name, types, onFilter }) {
+  // console.log(name, types);
+  const [filterName, setfilterName] = React.useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setfilterName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
+    onFilter(filterName)
   };
+  
 
   return (
     <div>
@@ -44,14 +46,14 @@ export default function FilterCheckMarks({ name, types }) {
             labelId="demo-multiple-checkbox-label"
             id="demo-multiple-checkbox"
             multiple
-            value={personName}
+            value={filterName}
             onChange={handleChange}
             input={<OutlinedInput label="Tag" />}
             renderValue={(selected) => selected.join(', ')}
             MenuProps={MenuProps}>
             {types.map((name) => (
               <MenuItem key={name} value={name}>
-                <Checkbox checked={personName.indexOf(name) > -1} />
+                <Checkbox checked={filterName.indexOf(name) > -1} />
                 <ListItemText primary={name} />
               </MenuItem>
             ))}

@@ -35,6 +35,16 @@ const theme = createTheme({
       light: '#2D2D2D',
     },
   },
+  breakpoints: {
+    values: {
+      mobile: 400,
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

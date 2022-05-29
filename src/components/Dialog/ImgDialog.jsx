@@ -72,7 +72,7 @@ export default function ImgDialog({ item }) {
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        // maxWidth="600px"
+        maxWidth='sm'
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description">
         <Grid container spacing={3} sx={{ p: '23px' }}>

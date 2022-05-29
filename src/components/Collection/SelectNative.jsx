@@ -1,6 +1,40 @@
 import { Box, FormControl, InputLabel, NativeSelect } from '@mui/material';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setSortBy } from '../../redux/filter/filterSlice';
 
 export default function SelectNative() {
+  const dispatch = useDispatch();
+
+  const sorts = [
+    { name: 'По названию', type: 'title' },
+    { name: 'По цене', type: 'price' },
+    { name: 'Сначало новые', type: 'new' },
+  ];
+  const onClickSortType = React.useCallback(
+    (type) => {
+      dispatch(setSortBy(type));
+    },
+    [dispatch],
+  );
+  const onSelectItem = (index) => {
+    if (onClickSortType) {
+      onClickSortType(index);
+    }
+  };
+  const handleChange = (event) => {
+    let newValue = 'title';
+    if (event.target.value === 'По названию') {
+      newValue = 'title';
+    }
+    if (event.target.value === 'По цене') {
+      newValue = 'price';
+    }
+    if (event.target.value === 'Сначало новые') {
+      newValue = 'new';
+    }
+    onSelectItem(newValue);
+  };
   return (
     <Box sx={{ minWidth: 200 }}>
       <FormControl fullWidth>
@@ -12,10 +46,11 @@ export default function SelectNative() {
           inputProps={{
             name: 'age',
             id: 'uncontrolled-native',
-          }}>
-          <option value={10}>По названию</option>
-          <option value={20}>По цене</option>
-          <option value={30}>Сначало новые</option>
+          }}
+          onChange={handleChange}>
+          {sorts.map((sort) => (
+            <option key={sort.type}>{sort.name}</option>
+          ))}
         </NativeSelect>
       </FormControl>
     </Box>
