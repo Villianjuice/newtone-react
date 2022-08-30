@@ -42,15 +42,7 @@ const Header = React.memo(function Header() {
           </Box>
           <Search />
           <Box sx={styles.BoxIcons}>
-            <IconButton
-              onClick={() => navigate('/auth')}
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ ml: 5 }}>
-              <PersonOutlineIcon fontSize="28px" />
-            </IconButton>
+            
             <IconButton
               onClick={() => navigate('/cart')}
               size="large"
